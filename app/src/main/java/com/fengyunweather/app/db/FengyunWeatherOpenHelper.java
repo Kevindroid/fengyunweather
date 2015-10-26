@@ -28,10 +28,10 @@ public class FengyunWeatherOpenHelper extends SQLiteOpenHelper {
     /**
      * County建表语句
      */
-    public static final String CREATE_COUNTRY="create table Country("
+    public static final String CREATE_COUNTY="create table County("
     +"id integer primary key autoincrement,"
-    +"county_name text"
-    +"county_code text"
+    +"county_name text,"
+    +"county_code text,"
     +"city_id integer)";
 
     public FengyunWeatherOpenHelper(Context context,String name,SQLiteDatabase.CursorFactory factory,int version){
@@ -42,7 +42,7 @@ public class FengyunWeatherOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_PROVINCE);
         db.execSQL(CREATE_CITY);
-        db.execSQL(CREATE_COUNTRY);
+        db.execSQL(CREATE_COUNTY);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class FengyunWeatherDB {
     /**
      * 数据库名
      */
-    public static final String DB_NAME="cool_weather";
+    public static final String DB_NAME="fengyun_weather";
     /**
      * 数据库版本
      */
@@ -76,7 +76,7 @@ public class FengyunWeatherDB {
     /**
      * 将City实例存储到数据库
      */
-    public void savecity(City city){
+    public void saveCity(City city){
         if(city!=null){
             ContentValues values=new ContentValues();
             values.put("city_name",city.getCityName());
@@ -90,7 +90,7 @@ public class FengyunWeatherDB {
      */
     public List<City> loadCitise(int provinceId){
         List<City> list=new ArrayList<City>();
-        Cursor cursor=db.query("City",null,"provinceId=?",new String[]{String.valueOf(provinceId)},
+        Cursor cursor=db.query("City",null,"province_id=?",new String[]{String.valueOf(provinceId)},
                 null,null,null);
         if(cursor.moveToFirst()){
             do{
@@ -115,17 +115,16 @@ public class FengyunWeatherDB {
            ContentValues values=new ContentValues();
            values.put("county_name",county.getCountyName());
            values.put("county_code",county.getCountyCode());
-           values.put("city_name",county.getCityId());
+           values.put("city_id",county.getCityId());
            db.insert("County", null, values);
        }
     }
     /**
      * 从数据库中读取某城市下所有县信息
      */
-    public List<County> readCounties(int cityId){
+    public List<County> loadCounties(int cityId){
         List<County> list=new ArrayList<County>();
-        Cursor cursor;
-        cursor = db.query("County",null,"city_id=?",new String[]{String.valueOf(cityId)},null,null,null);
+        Cursor cursor=db.query("County",null,"city_id=?",new String[]{String.valueOf(cityId)},null,null,null);
         if(cursor.moveToFirst()){
             do{
                 County county=new County();
